@@ -1,4 +1,5 @@
 import sys
+import msvcrt
 import os
 clear = lambda: os.system('cls')
 
@@ -23,16 +24,18 @@ grid.append(row)
 
 def get_direction():
     location_change = [0 ,0]
-    dir = input("Sterowanie [WSAD] + ENTER. [Q] - wyjście.\nKierunek: ")
-    if dir == "w":
+    print("Sterowanie [WSAD] [Q] - wyjście.")
+    dir = msvcrt.getch()
+    #dir = input("Sterowanie [WSAD] + ENTER. [Q] - wyjście.\nKierunek: ")
+    if dir == b"w":
         location_change[1] = -1
-    elif dir == "s":
+    elif dir == b"s":
         location_change[1] = 1
-    elif dir == "a":
+    elif dir == b"a":
         location_change[0] = -1
-    elif dir == "d":
+    elif dir == b"d":
         location_change[0] = 1
-    elif dir == "q":
+    elif dir == b"q":
         sys.exit()
     return location_change
 
