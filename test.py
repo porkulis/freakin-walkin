@@ -36,10 +36,6 @@ def get_direction():
         sys.exit()
     return location_change
 
-
-
-
-
 def display_map():
     clear()
     blank = " . "
@@ -65,9 +61,6 @@ def display_map():
             else:
                 print(f"{i} {empty_line}")
         i += 1
-    print(f"{current_location[0]}")
-    print(f"{current_location[1]}")
-
 
 indexes = [0, 0]
 current_location = grid[0][indexes[0]], grid[1][indexes[1]]
@@ -77,27 +70,27 @@ display_map()
 zmiana = []
 while True:
     zmiana = get_direction()
-    if indexes[0] < 9:
-        if zmiana[0] < 1:
+
+    if indexes[0] <= 0:
+        if zmiana[0] > 0:
             indexes[0] += zmiana[0]
-    else:
+    elif indexes[0] < 9:
         indexes[0] += zmiana[0]
-    if indexes[1] < 9:
-        if zmiana[1] < 1:
+    elif indexes[0] >= 9:
+        if zmiana[0] < 0:
+            indexes[0] += zmiana[0]
+
+    if indexes[1] <= 0:
+        if zmiana[1] > 0:
             indexes[1] += zmiana[1]
-    else:
+    elif indexes[1] < 9:
         indexes[1] += zmiana[1]
+    elif indexes[1] >= 9:
+        if zmiana[1] < 0:
+            indexes[1] += zmiana[1]
 
-    print(f"len x: {len(grid[0])}")
-    print(f"len y: {len(grid[1])}")
-    print(f"x: {indexes[0]}")
-    print(f"y: {indexes[1]}")
     current_location = grid[0][indexes[0]], grid[1][indexes[1]]
-
-    print(current_location)
     display_map()
-    print(f"indexes: {indexes}")
-    print(f"Zmiana: {zmiana}")
 
 
 
